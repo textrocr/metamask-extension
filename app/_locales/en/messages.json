@@ -1042,6 +1042,9 @@
   "getStarted": {
     "message": "Get Started"
   },
+  "goBack": {
+    "message": "Go Back"
+  },
   "goerli": {
     "message": "Goerli Test Network"
   },
@@ -2073,6 +2076,15 @@
   },
   "signed": {
     "message": "Signed"
+  },
+  "skip": {
+    "message": "Skip"
+  },
+  "skipAccountSecurity": {
+    "message": "Skip Account Security?"
+  },
+  "skipAccountSecurityDetails": {
+    "message": "I understand that until I back up my Secret Recovery Phrase, I may lose my accounts and all of their assets."
   },
   "slow": {
     "message": "Slow"

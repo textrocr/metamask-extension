@@ -72,6 +72,7 @@ export default function Box({
   alignItems,
   justifyContent,
   textAlign,
+  flexDirection = "row",
   display,
   width,
   height,
@@ -115,6 +116,7 @@ export default function Box({
       !display && (Boolean(justifyContent) || Boolean(alignItems)),
     [`box--justify-content-${justifyContent}`]: Boolean(justifyContent),
     [`box--align-items-${alignItems}`]: Boolean(alignItems),
+    [`box--flex-direction-${flexDirection}`]: Boolean(flexDirection),
     // text align
     [`box--text-align-${textAlign}`]: Boolean(textAlign),
     // display

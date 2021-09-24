@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Box from '../../../components/ui/box';
 import Button from '../../../components/ui/button';
@@ -8,6 +8,8 @@ import {
   TYPOGRAPHY,
   JUSTIFY_CONTENT,
   FONT_WEIGHT,
+  DISPLAY,
+  ALIGN_ITEMS,
 } from '../../../helpers/constants/design-system';
 import ProgressBar from '../../../components/app/step-progress-bar';
 import { useI18nContext } from '../../../hooks/useI18nContext';
@@ -15,16 +17,21 @@ import {
   ONBOARDING_REVIEW_SRP_ROUTE,
   ONBOARDING_COMPLETION_ROUTE,
 } from '../../../helpers/constants/routes';
+import SkipSRPBackup from './skip-srp-backup-popover';
 
 export default function SecureYourWallet() {
   const history = useHistory();
   const t = useI18nContext();
+  const [showSkipSRPBackupPopover, setShowSkipSRPBackupPopover] = useState(
+    false,
+  );
 
   const handleClickRecommended = () => {
     history.push(ONBOARDING_REVIEW_SRP_ROUTE);
   };
 
   const handleClickNotRecommended = () => {
+    setShowSkipSRPBackupPopover(true);
   };
 
   const subtitles = {
@@ -42,6 +49,9 @@ export default function SecureYourWallet() {
 
   return (
     <div className="secure-your-wallet">
+      {showSkipSRPBackupPopover && (
+        <SkipSRPBackup handleClose={() => setShowSkipSRPBackupPopover(false)} />
+      )}
       <ProgressBar stage="SEED_PHRASE_VIDEO" />
       <Box
         justifyContent={JUSTIFY_CONTENT.CENTER}
@@ -84,14 +94,24 @@ export default function SecureYourWallet() {
           })}
         </video>
       </Box>
-      <div className="secure-your-wallet__actions">
+      <Box
+        margin={8}
+        width="10/12"
+        justifyContent={JUSTIFY_CONTENT.SPACE_BETWEEN}
+        className="secure-your-wallet__actions"
+      >
+        <Button
+          type="secondary"
+          rounded
+          large
+          onClick={handleClickNotRecommended}
+        >
+          {t('seedPhraseIntroNotRecommendedButtonCopy')}
+        </Button>
         <Button type="primary" rounded large onClick={handleClickRecommended}>
           {t('seedPhraseIntroRecommendedButtonCopy')}
         </Button>
-        <Button type="secondary" rounded large onClick={handleClickNotRecommended}>
-          {t('seedPhraseIntroNotRecommendedButtonCopy')}
-        </Button>
-      </div>
+      </Box>
       <Box marginBottom={4} textAlign={TEXT_ALIGN.CENTER}>
         <Typography
           tag="span"
@@ -134,7 +154,11 @@ export default function SecureYourWallet() {
           {t('seedPhraseIntroSidebarCopyTwo')}
         </Typography>
       </Box>
-      <Box marginBottom={2} textAlign={TEXT_ALIGN.CENTER}>
+      <Box
+        className="secure-your-wallet__highlighted"
+        marginBottom={2}
+        textAlign={TEXT_ALIGN.CENTER}
+      >
         <Typography tag="span" variant={TYPOGRAPHY.H4}>
           {t('seedPhraseIntroSidebarCopyThree')}
         </Typography>
