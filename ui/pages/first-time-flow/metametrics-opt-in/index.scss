@@ -24,6 +24,13 @@
     }
   }
 
+  &__outline {
+    border: 1px solid #D6D9DC;
+    border-radius: 10px;
+    padding: 50px;
+    margin: 60px 0 20px 0;
+  }
+
   &__title {
     @include H1;
 
@@ -85,6 +92,7 @@
 
     p {
       text-align: center;
+      line-height: 140%;
     }
   }
 

@@ -32,136 +32,139 @@ export default class MetaMetricsOptIn extends Component {
       <div className="metametrics-opt-in">
         <div className="metametrics-opt-in__main">
           <MetaFoxLogo useDark={isBeta()} />
-          <div className="metametrics-opt-in__title">
-            {t('metametricsTitle')}
-          </div>
-          <div className="metametrics-opt-in__body">
-            <p>
-              <span>{t('metametricsOptInDescription2')}</span>
-              <br />
-              <span>{t('metametricsOptInDescription3')}</span>
+
+          <div className="metametrics-opt-in__outline">
+            <div className="metametrics-opt-in__title">
+              {t('metametricsTitle')}
+            </div>
+            <div className="metametrics-opt-in__body">
+              <p>
+                <span>{t('metametricsOptInDescription2')}</span>
+                <br />
+                <span>{t('metametricsOptInDescription3')}</span>
+              </p>
+
+              <ul className="metametrics-opt-in__committments">
+                <li className="metametrics-opt-in__row">
+                  <i className="fa fa-check" />
+                  <div className="metametrics-opt-in__row-description">
+                    {t('metametricsCommitmentsAllowOptOut2')}
+                  </div>
+                </li>
+                <li className="metametrics-opt-in__row">
+                  <i className="fa fa-check" />
+                  <div className="metametrics-opt-in__row-description">
+                    {t('metametricsCommitmentsSendAnonymizedEvents')}
+                  </div>
+                </li>
+                <li className="metametrics-opt-in__row">
+                  <i className="fa fa-times" />
+                  <div className="metametrics-opt-in__row-description">
+                    {t('metametricsCommitmentsNeverCollectKeysEtc', [
+                      t('metametricsCommitmentsBoldNever'),
+                    ])}
+                  </div>
+                </li>
+                <li className="metametrics-opt-in__row">
+                  <i className="fa fa-times" />
+                  <div className="metametrics-opt-in__row-description">
+                    {t('metametricsCommitmentsNeverCollectIP', [
+                      t('metametricsCommitmentsBoldNever'),
+                    ])}
+                  </div>
+                </li>
+                <li className="metametrics-opt-in__row">
+                  <i className="fa fa-times" />
+                  <div className="metametrics-opt-in__row-description">
+                    {t('metametricsCommitmentsNeverSellDataForProfit', [
+                      t('metametricsCommitmentsBoldNever'),
+                    ])}
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <p className="metametrics-opt-in__bottom-text">
+              {t('gdprMessage', [
+                <a
+                  key="metametrics-bottom-text-wrapper"
+                  href="https://metamask.io/privacy.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('gdprMessagePrivacyPolicy')}
+                </a>,
+              ])}
             </p>
+            <div className="metametrics-opt-in__footer">
+              <PageContainerFooter
+                onCancel={async () => {
+                  await setParticipateInMetaMetrics(false);
 
-            <ul className="metametrics-opt-in__committments">
-              <li className="metametrics-opt-in__row">
-                <i className="fa fa-check" />
-                <div className="metametrics-opt-in__row-description">
-                  {t('metametricsCommitmentsAllowOptOut2')}
-                </div>
-              </li>
-              <li className="metametrics-opt-in__row">
-                <i className="fa fa-check" />
-                <div className="metametrics-opt-in__row-description">
-                  {t('metametricsCommitmentsSendAnonymizedEvents')}
-                </div>
-              </li>
-              <li className="metametrics-opt-in__row">
-                <i className="fa fa-times" />
-                <div className="metametrics-opt-in__row-description">
-                  {t('metametricsCommitmentsNeverCollectKeysEtc', [
-                    t('metametricsCommitmentsBoldNever'),
-                  ])}
-                </div>
-              </li>
-              <li className="metametrics-opt-in__row">
-                <i className="fa fa-times" />
-                <div className="metametrics-opt-in__row-description">
-                  {t('metametricsCommitmentsNeverCollectIP', [
-                    t('metametricsCommitmentsBoldNever'),
-                  ])}
-                </div>
-              </li>
-              <li className="metametrics-opt-in__row">
-                <i className="fa fa-times" />
-                <div className="metametrics-opt-in__row-description">
-                  {t('metametricsCommitmentsNeverSellDataForProfit', [
-                    t('metametricsCommitmentsBoldNever'),
-                  ])}
-                </div>
-              </li>
-            </ul>
-          </div>
-          <p className="metametrics-opt-in__bottom-text">
-            {t('gdprMessage', [
-              <a
-                key="metametrics-bottom-text-wrapper"
-                href="https://metamask.io/privacy.html"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('gdprMessagePrivacyPolicy')}
-              </a>,
-            ])}
-          </p>
-          <div className="metametrics-opt-in__footer">
-            <PageContainerFooter
-              onCancel={async () => {
-                await setParticipateInMetaMetrics(false);
-
-                try {
-                  if (
-                    participateInMetaMetrics === null ||
-                    participateInMetaMetrics === true
-                  ) {
-                    await metricsEvent({
-                      eventOpts: {
-                        category: 'Onboarding',
-                        action: 'Metrics Option',
-                        name: 'Metrics Opt Out',
-                      },
-                      isOptIn: true,
-                      flushImmediately: true,
-                    });
+                  try {
+                    if (
+                      participateInMetaMetrics === null ||
+                      participateInMetaMetrics === true
+                    ) {
+                      await metricsEvent({
+                        eventOpts: {
+                          category: 'Onboarding',
+                          action: 'Metrics Option',
+                          name: 'Metrics Opt Out',
+                        },
+                        isOptIn: true,
+                        flushImmediately: true,
+                      });
+                    }
+                  } finally {
+                    history.push(nextRoute);
                   }
-                } finally {
-                  history.push(nextRoute);
-                }
-              }}
-              cancelText={t('noThanks')}
-              hideCancel={false}
-              onSubmit={async () => {
-                const [, metaMetricsId] = await setParticipateInMetaMetrics(
-                  true,
-                );
-                try {
-                  const metrics = [];
-                  if (
-                    participateInMetaMetrics === null ||
-                    participateInMetaMetrics === false
-                  ) {
+                }}
+                cancelText={t('noThanks')}
+                hideCancel={false}
+                onSubmit={async () => {
+                  const [, metaMetricsId] = await setParticipateInMetaMetrics(
+                    true,
+                  );
+                  try {
+                    const metrics = [];
+                    if (
+                      participateInMetaMetrics === null ||
+                      participateInMetaMetrics === false
+                    ) {
+                      metrics.push(
+                        metricsEvent({
+                          eventOpts: {
+                            category: 'Onboarding',
+                            action: 'Metrics Option',
+                            name: 'Metrics Opt In',
+                          },
+                          isOptIn: true,
+                          flushImmediately: true,
+                        }),
+                      );
+                    }
                     metrics.push(
                       metricsEvent({
                         eventOpts: {
                           category: 'Onboarding',
-                          action: 'Metrics Option',
-                          name: 'Metrics Opt In',
+                          action: 'Import or Create',
+                          name: firstTimeSelectionMetaMetricsName,
                         },
                         isOptIn: true,
+                        metaMetricsId,
                         flushImmediately: true,
                       }),
                     );
+                    await Promise.all(metrics);
+                  } finally {
+                    history.push(nextRoute);
                   }
-                  metrics.push(
-                    metricsEvent({
-                      eventOpts: {
-                        category: 'Onboarding',
-                        action: 'Import or Create',
-                        name: firstTimeSelectionMetaMetricsName,
-                      },
-                      isOptIn: true,
-                      metaMetricsId,
-                      flushImmediately: true,
-                    }),
-                  );
-                  await Promise.all(metrics);
-                } finally {
-                  history.push(nextRoute);
-                }
-              }}
-              submitText={t('affirmAgree')}
-              submitButtonType="primary"
-              disabled={false}
-            />
+                }}
+                submitText={t('affirmAgree')}
+                submitButtonType="primary"
+                disabled={false}
+              />
+            </div>
           </div>
         </div>
       </div>
