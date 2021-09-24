@@ -22,6 +22,7 @@ export default function Typography({
   fontStyle = 'normal',
   align,
   boxProps = {},
+  margin = [1, 0],
 }) {
   const computedClassName = classnames(
     'typography',
@@ -44,7 +45,7 @@ export default function Typography({
   }
 
   return (
-    <Box margin={[1, 0]} {...boxProps}>
+    <Box margin={margin} {...boxProps}>
       {(boxClassName) => (
         <Tag className={classnames(boxClassName, computedClassName)}>
           {children}

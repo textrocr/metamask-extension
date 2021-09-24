@@ -65,6 +65,7 @@ const ONBOARDING_CONFIRM_SRP_ROUTE = '/onboarding/confirm-srp';
 const ONBOARDING_PRIVACY_SETTINGS_ROUTE = '/onboarding/privacy-settings';
 const ONBOARDING_COMPLETION_ROUTE = '/onboarding/completion';
 const ONBOARDING_UNLOCK_ROUTE = '/onboarding/unlock';
+const ONBOARDING_PIN_EXTENSION_ROUTE = '/onboarding/pin-extension'
 
 const CONFIRM_TRANSACTION_ROUTE = '/confirm-transaction';
 const CONFIRM_SEND_ETHER_PATH = '/send-ether';

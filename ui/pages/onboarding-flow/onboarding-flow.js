@@ -19,12 +19,10 @@ import {
 } from '../../helpers/constants/routes';
 import OnboardingFlowSwitch from './onboarding-flow-switch/onboarding-flow-switch';
 import CreatePassword from './create-password/create-password';
-import SecureYourWallet from './secure-your-wallet/secure-your-wallet';
+// import SecureYourWallet from './secure-your-wallet/secure-your-wallet';
 import RecoveryPhrase from './recovery-phrase/confirm-recovery-phrase';
 import ConfirmRecoveryPhrase from './recovery-phrase/confirm-recovery-phrase';
-import StepProgressBar, {
-  stages,
-} from '../../components/app/step-progress-bar';
+import CreationSuccessful from './creation-successful/creation-successful'
 import {
   getCompletedOnboarding,
   getIsInitialized,
@@ -48,7 +46,7 @@ export default function OnboardingFlow() {
   const seedPhraseBackedUp = useSelector(getSeedPhraseBackedUp);
 
   useEffect(() => {
-    history.push(ONBOARDING_SECURE_YOUR_WALLET_ROUTE);
+    history.push(ONBOARDING_COMPLETION_ROUTE);
    
     // if (
     //   completedOnboarding && seedPhraseBackedUp
@@ -129,21 +127,21 @@ export default function OnboardingFlow() {
             path={ONBOARDING_CONFIRM_SRP_ROUTE}
             component={() => <ConfirmRecoveryPhrase seedPhrase={seedPhrase} />}
           />
-          <Route
+          {/* <Route
             path={ONBOARDING_SECURE_YOUR_WALLET_ROUTE}
             component={SecureYourWallet}
-          />
+          /> */}
           <Route
           path={ONBOARDING_UNLOCK_ROUTE}
           render={(routeProps) => (
             <Unlock {...routeProps} onSubmit={handleUnlock} />
           )}
         />
-          {/* <Route
+          <Route
           exact
           path={ONBOARDING_COMPLETION_ROUTE}
-          component={EndOfFlow}
-        /> */}
+          component={CreationSuccessful}
+        />
           <Route exact path="*" component={OnboardingFlowSwitch} />
         </Switch>
       </div>
