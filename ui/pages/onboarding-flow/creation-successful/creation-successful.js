@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import Box from '../../../components/ui/box';
 import Typography from '../../../components/ui/typography';
 import Button from '../../../components/ui/button';
@@ -47,7 +47,10 @@ export default function CreationSuccessful() {
         <li>
           <Typography variant={TYPOGRAPHY.H4}>
             {t('walletCreationSuccessReminder3', [
-              <span className="creation-successful__bold">
+              <span
+                key="creation-successful__bold"
+                className="creation-successful__bold"
+              >
                 {t('walletCreationSuccessReminder3BoldSection')}
               </span>,
             ])}

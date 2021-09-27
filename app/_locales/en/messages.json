@@ -935,6 +935,9 @@
     "message": "File import not working? Click here!",
     "description": "Helps user import their account from a JSON file"
   },
+  "followUsOnTwitter": {
+    "message": "Follow us on Twitter"
+  },
   "forbiddenIpfsGateway": {
     "message": "Forbidden IPFS Gateway: Please specify a CID gateway"
   },

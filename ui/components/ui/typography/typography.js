@@ -64,6 +64,7 @@ Typography.propTypes = {
   boxProps: PropTypes.shape({
     ...Box.propTypes,
   }),
+  margin: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   fontWeight: PropTypes.oneOf(Object.values(FONT_WEIGHT)),
   fontStyle: PropTypes.oneOf(Object.values(FONT_STYLE)),
   tag: PropTypes.oneOf([
