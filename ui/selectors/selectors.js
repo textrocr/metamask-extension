@@ -171,9 +171,6 @@ export const getMetaMaskAccounts = createSelector(
     ),
 );
 
-/*
- * Onboarding related selectors
- */
 export function getCompletedOnboarding(state) {
   return state.metamask.completedOnboarding;
 }
@@ -188,9 +185,6 @@ export function getIsUnlocked(state) {
 export function getSeedPhraseBackedUp(state) {
   return state.metamask.seedPhraseBackedUp;
 }
-/*
- * End Onboarding related selectors
- */
 
 export function getSelectedAddress(state) {
   return state.metamask.selectedAddress;

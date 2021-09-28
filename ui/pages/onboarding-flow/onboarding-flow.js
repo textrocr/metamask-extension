@@ -150,7 +150,12 @@ export default function OnboardingFlow() {
         </Switch>
       </div>
       {currentLocation?.pathname === ONBOARDING_COMPLETION_ROUTE && (
-        <Button className="onboarding-flow__twitter-button" type="link">
+        <Button
+          className="onboarding-flow__twitter-button"
+          type="link"
+          href="https://twitter.com/MetaMask"
+          target="_blank"
+        >
           <span>{t('followUsOnTwitter')}</span>
           <img src="images/twitter-icon.png" />
         </Button>

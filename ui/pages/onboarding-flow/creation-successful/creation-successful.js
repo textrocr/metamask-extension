@@ -57,7 +57,13 @@ export default function CreationSuccessful() {
           </Typography>
         </li>
         <li>
-          <Typography variant={TYPOGRAPHY.H4}>{t('learnMore')}</Typography>
+          <Button
+            href="https://community.metamask.io/t/what-is-a-secret-recovery-phrase-and-how-to-keep-your-crypto-wallet-secure/3440"
+            target="_blank"
+            type="link"
+          >
+            {t('learnMore')}
+          </Button>
         </li>
       </ul>
       <Box marginTop={6} className="creation-successful__actions">
