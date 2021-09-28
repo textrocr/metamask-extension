@@ -8,7 +8,7 @@ import FirstTimeFlow from '../first-time-flow';
 import SendTransactionScreen from '../send';
 import Swaps from '../swaps';
 import ConfirmTransaction from '../confirm-transaction';
-import Home from '../home';
+// import Home from '../home';
 import Settings from '../settings';
 import Authenticated from '../../helpers/higher-order-components/authenticated';
 import Initialized from '../../helpers/higher-order-components/initialized';
@@ -39,7 +39,6 @@ import {
   CONFIRM_TRANSACTION_ROUTE,
   CONNECT_ROUTE,
   DEFAULT_ROUTE,
-  INITIALIZE_ROUTE,
   INITIALIZE_UNLOCK_ROUTE,
   LOCK_ROUTE,
   MOBILE_SYNC_ROUTE,
@@ -119,10 +118,9 @@ export default class Routes extends Component {
 
     const routes = (
       <Switch>
-
-        {/*FOR DEV PURPOSES!*/}
+        {/* FOR DEV PURPOSES!*/}
         <Route path={DEFAULT_ROUTE} component={OnboardingFlow} />
-        {/*FOR DEV PURPOSES!*/}
+        {/* FOR DEV PURPOSES!*/}
 
         <Route path={LOCK_ROUTE} component={Lock} exact />
         {/* <Route path={INITIALIZE_ROUTE} component={FirstTimeFlow} /> */}

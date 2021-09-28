@@ -72,7 +72,7 @@ export default function Box({
   alignItems,
   justifyContent,
   textAlign,
-  flexDirection = "row",
+  flexDirection = 'row',
   display,
   width,
   height,

@@ -33,6 +33,7 @@ export default function SkipSRPBackup({ handleClose }) {
             {t('goBack')}
           </Button>
           <Button
+            disabled={!checked}
             type="primary"
             rounded
             onClick={() => history.push(ONBOARDING_COMPLETION_ROUTE)}

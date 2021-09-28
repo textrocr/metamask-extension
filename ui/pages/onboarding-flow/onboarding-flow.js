@@ -17,11 +17,6 @@ import {
   ONBOARDING_COMPLETION_ROUTE,
   ONBOARDING_UNLOCK_ROUTE,
 } from '../../helpers/constants/routes';
-import OnboardingFlowSwitch from './onboarding-flow-switch/onboarding-flow-switch';
-import CreatePassword from './create-password/create-password';
-import SecureYourWallet from './secure-your-wallet/secure-your-wallet';
-import RecoveryPhrase from './recovery-phrase/confirm-recovery-phrase';
-import ConfirmRecoveryPhrase from './recovery-phrase/confirm-recovery-phrase';
 import StepProgressBar, {
   stages,
 } from '../../components/app/step-progress-bar';
@@ -37,6 +32,11 @@ import {
   unlockAndGetSeedPhrase,
   verifySeedPhrase,
 } from '../../store/actions';
+import OnboardingFlowSwitch from './onboarding-flow-switch/onboarding-flow-switch';
+import CreatePassword from './create-password/create-password';
+import SecureYourWallet from './secure-your-wallet/secure-your-wallet';
+import RecoveryPhrase from './recovery-phrase/confirm-recovery-phrase';
+import ConfirmRecoveryPhrase from './recovery-phrase/confirm-recovery-phrase';
 
 export default function OnboardingFlow() {
   const [seedPhrase, setSeedPhrase] = useState('');
@@ -49,7 +49,7 @@ export default function OnboardingFlow() {
 
   useEffect(() => {
     history.push(ONBOARDING_SECURE_YOUR_WALLET_ROUTE);
-   
+
     // if (
     //   completedOnboarding && seedPhraseBackedUp
     // ) {
@@ -73,27 +73,27 @@ export default function OnboardingFlow() {
     }
   };
 
-    const handleImportWithSeedPhrase = async (password, seedPhrase) => {
-      try {
-        const vault = await dispatch(
-          createNewVaultAndRestore(password, seedPhrase),
-        );
-        return vault;
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    };
+  const handleImportWithSeedPhrase = async (password, seedPhrase) => {
+    try {
+      const vault = await dispatch(
+        createNewVaultAndRestore(password, seedPhrase),
+      );
+      return vault;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
 
-    const handleUnlock = async (password) => {
-      try {
-        const seedPhrase = await unlockAndGetSeedPhrase(password);
-        setSeedPhrase(seedPhrase)
-        // TODO - get next route
-        // history.push()
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    };
+  const handleUnlock = async (password) => {
+    try {
+      const seedPhrase = await unlockAndGetSeedPhrase(password);
+      setSeedPhrase(seedPhrase);
+      // TODO - get next route
+      // history.push()
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
 
   return (
     <div className="onboarding-flow">
@@ -134,11 +134,11 @@ export default function OnboardingFlow() {
             component={SecureYourWallet}
           />
           <Route
-          path={ONBOARDING_UNLOCK_ROUTE}
-          render={(routeProps) => (
-            <Unlock {...routeProps} onSubmit={handleUnlock} />
-          )}
-        />
+            path={ONBOARDING_UNLOCK_ROUTE}
+            render={(routeProps) => (
+              <Unlock {...routeProps} onSubmit={handleUnlock} />
+            )}
+          />
           {/* <Route
           exact
           path={ONBOARDING_COMPLETION_ROUTE}
